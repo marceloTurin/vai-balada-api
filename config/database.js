@@ -6,8 +6,8 @@ const Env = use('Env')
 /** @type {import('@adonisjs/ignitor/src/Helpers')} */
 const Helpers = use('Helpers')
 
-const Url = require('postgres://lvyznqliyxgbvu:3afc662599caedccf0576246eb332de959f620f6caeb10d324ff2a7c7de54a8b@ec2-174-129-252-252.compute-1.amazonaws.com:5432/d2i40abdohtpgh')
-const DATABASE_URL = new Url (Env.get ( 'DATABASE_URL' ))
+const Url = require('url-parse')
+const DATABASE_URL = new Url (Env.get ( 'postgres://lvyznqliyxgbvu:3afc662599caedccf0576246eb332de959f620f6caeb10d324ff2a7c7de54a8b@ec2-174-129-252-252.compute-1.amazonaws.com:5432/d2i40abdohtpgh' ))
 
 module.exports = {
   /*
