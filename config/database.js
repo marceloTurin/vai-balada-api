@@ -6,6 +6,9 @@ const Env = use('Env')
 /** @type {import('@adonisjs/ignitor/src/Helpers')} */
 const Helpers = use('Helpers')
 
+const Url = require('postgres://lvyznqliyxgbvu:3afc662599caedccf0576246eb332de959f620f6caeb10d324ff2a7c7de54a8b@ec2-174-129-252-252.compute-1.amazonaws.com:5432/d2i40abdohtpgh')
+const DATABASE_URL = new Url (Env.get ( 'DATABASE_URL' ))
+
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -73,11 +76,11 @@ module.exports = {
   pg: {
     client: 'pg',
     connection: {
-      host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      host: Env.get('DB_HOST', DATABASE_URL.hostname),
+      port: Env.get('DB_PORT', DATABASE_URL.port),
+      user: Env.get('DB_USER',  DATABASE_URL.username),
+      password: Env.get('DB_PASSWORD', DATABASE_URL.password),
+      database: Env.get('DB_DATABASE', DATABASE_URL.pathname.substr (1))
     },
     debug: Env.get('DB_DEBUG', false)
   }
